@@ -36,9 +36,12 @@ void Connection::start()
         timer.expires_from_now(boost::posix_time::seconds(keepalive_timeout));
         timer.async_wait(std::bind(
             &Connection::handle_timeout, this->shared_from_this(), std::placeholders::_1));
+        return;
     }
 }
-
+int Testing(){
+    printf("Hello");
+}
 void Connection::handle_read(const boost::system::error_code &error, std::size_t bytes_transferred)
 {
     if (error)
